@@ -70,3 +70,27 @@ CallStack (from HasCallStack):
 error, called at lib\Data\GI\GIR\Repository.hs:89:20 in
 haskell-gi-0.20.3-ApJPztkUy0UEBeqlBJz1Ty:Data.GI.GIR.Repository
 #+END_EXAMPLE
+Luckily https://github.com/haskell-gi/haskell-gi/issues/36 provides a clue.
+A quick search on file system reveals gir files in
+C:\HaskellPlatform\msys\mingw64\share\gir-1.0.
+
+so I tired following
+#+BEGIN_EXAMPLE
+HASKELL_GI_GIR_SEARCH_PATH='/c/HaskellPlatform/msys/mingw64/share/gir-1.0' stack build
+#+END_EXAMPLE
+
+which has helped me to go past the git errors and gave me another error
+#+BEGIN_EXAMPLE
+Failed to load shared library 'libcairo-gobject-2.dll'
+#+END_EXAMPLE
+
+The library can be found in C:\HaskellPlatform\msys\mingw64\bin so I will try to
+set extra-lib-dirs in stack.yaml
+
+#+BEGIN_EXAMPLE
+extra-lib-dirs:
+- C:\HaskellPlatform\msys\mingw64\bin
+#+END_EXAMPLE
+
+This time the extra-lib-dirs that I have added are not garbled as in Haskell
+install where Destination folder had spaces.
