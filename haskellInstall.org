@@ -1,0 +1,72 @@
+* Haskel Install
+I have uninstalled everything Haskell related. Also I have removed Haskell
+related environment variables and restarted the machine.
+
+I attempted to install HaskellPlatform-8.2.1-full-x86_64-setup.exe by clicking
+on the downloaded installer and running it as an administrator.
+I got rid of spaces in the path changing the destination folder at the
+beginning of the installation to C:\HaskellPlatform
+
+Despite changing the destination folder something strange happened to the
+Windows PATH. C:\Program Files\Haskell\bin was prepended to the PATH, but there
+is no Haskell folder in Program Files.
+C:\HaskellPlatform\mingw\bin was appended to the PATH and it contains ghci and
+runhaskell.exe.
+
+Starting WinGHCi from the start menu works.
+
+As a shell I will use mingw64.exe found in C:\HaskellPlatform\msys running it as
+an administrator. I did restart the shell as prompted and then ran pacman -Syu.
+After breaking the installation at the prompted spot I continued update with
+pacman -Su.
+
+Then I installed git running pacman -S git.
+And cloned my sample app with git clone https://github.com/bigos/hsudoku.git
+ran cd hsudoku and ran onto a problem with stack not being found.
+
+There was stack in C:\Users\Jacek\AppData\Roaming\local\bin but Msys did not
+know about it.
+Also there is a cabal folder C:\Users\Jacek\AppData\Roaming\cabal that I do not
+know if I have removed it prior to my installation.
+
+At this point I had a break.
+
+Later I have added following to ~/.bash_profile
+#+BEGIN_EXAMPLE
+export PATH="${PATH}:/c/HaskellPlatform/bin:/c/HaskellPlatform/lib/extralibs/bin:/c/Users/Jacek/AppData/Roaming/local/bin:/c/Users/Jacek/AppData/Roaming/cabal/bin"
+#+END_EXAMPLE
+
+Now cabal stack and ghci with option --version gave sensible result.
+Then I ran
+#+BEGIN_EXAMPLE
+cabal update
+cabal install happy
+#+END_EXAMPLE
+which ran without errors.
+
+Trying cabal install gave me dependency nightmare, so I switched to stack.
+I ran stack setup, which gave me few surprises but completed without errors.
+I am unable to scroll back, but I am under inpression that stack has downloaded
+another version of msys and another ghci.
+
+At this point I have tried to run stack build and started having dependency
+errors. The first error was about pkg-config.
+To pull as many dependencies as possible i have tried:
+pacman -S mingw64/mingw-w64-x86_64-python3-gobject
+
+Running stack build againg gave me error about pkg-config version so pkg-config
+was not installed, so i ran:
+pacman -S mingw64/mingw-w64-x86_64-pkg-config
+
+Next error was about gobject-introspection-1.0 so I ran
+pacman -S mingw64/mingw-w64-x86_64-gobject-introspection and tried stack build
+again
+
+This time I got a linker error
+#+BEGIN_EXAMPLE
+Linking C:\HaskellPlatform\msys\tmp\stack15648\gi-glib-2.0.14\.stack-work\dist\ca59d0ab\setup\setup.exe ...
+Did not find a GI repository for GLib-2.0 in ["C:\\Program Files\\gir-1.0"].
+CallStack (from HasCallStack):
+error, called at lib\Data\GI\GIR\Repository.hs:89:20 in
+haskell-gi-0.20.3-ApJPztkUy0UEBeqlBJz1Ty:Data.GI.GIR.Repository
+#+END_EXAMPLE
