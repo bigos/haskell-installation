@@ -94,3 +94,28 @@ extra-lib-dirs:
 
 This time the extra-lib-dirs that I have added are not garbled as in Haskell
 install where Destination folder had spaces.
+
+last error was
+#+BEGIN_EXAMPLE
+$ HASKELL_GI_GIR_SEARCH_PATH='/c/HaskellPlatform/msys/mingw64/share/gir-1.0' stack build
+gi-cairo-1.0.14: configure
+gi-gobject-2.0.15: download
+gi-gobject-2.0.15: configure
+gi-gobject-2.0.15: build
+gi-gobject-2.0.15: copy/register
+
+--  While building package gi-cairo-1.0.14 using:
+      C:\HaskellPlatform\msys\tmp\stack15372\gi-cairo-1.0.14\.stack-work\dist\ca59d0ab\setup\setup --builddir=.stack-work\dist\ca59d0ab configure --with-ghc=C:\Users\Jacek\AppData\Local\Programs\stack\x86_64-windows\ghc-8.0.2\bin\ghc.EXE --with-ghc-pkg=C:\Users\Jacek\AppData\Local\Programs\stack\x86_64-windows\ghc-8.0.2\bin\ghc-pkg.EXE --user --package-db=clear --package-db=global --package-db=C:\sr\snapshots\a3af6af0\pkgdb --libdir=C:\sr\snapshots\a3af6af0\lib --bindir=C:\sr\snapshots\a3af6af0\bin --datadir=C:\sr\snapshots\a3af6af0\share --libexecdir=C:\sr\snapshots\a3af6af0\libexec --sysconfdir=C:\sr\snapshots\a3af6af0\etc --docdir=C:\sr\snapshots\a3af6af0\doc\gi-cairo-1.0.14 --htmldir=C:\sr\snapshots\a3af6af0\doc\gi-cairo-1.0.14 --haddockdir=C:\sr\snapshots\a3af6af0\doc\gi-cairo-1.0.14 --dependency=Cabal=Cabal-1.24.2.0 --dependency=base=base-4.9.1.0 --dependency=bytestring=bytestring-0.10.8.1 --dependency=containers=containers-0.5.7.1 --dependency=haskell-gi=haskell-gi-0.20.3-ApJPztkUy0UEBeqlBJz1Ty --dependency=haskell-gi-base=haskell-gi-base-0.20.4-8bgvGsrBAnN4qbnkM5wOEG --dependency=haskell-gi-overloading=haskell-gi-overloading-1.0-27QuWHK6oxK6ozcekEpmYe --dependency=text=text-1.2.2.2-9UQZjEJZQFSGMffj1Z5g00 --dependency=transformers=transformers-0.5.2.0 --extra-include-dirs=C:\Users\Jacek\AppData\Local\Programs\stack\x86_64-windows\msys2-20150512\mingw64\include --extra-lib-dirs=C:\HaskellPlatform\msys\mingw64\bin --extra-lib-dirs=C:\Users\Jacek\AppData\Local\Programs\stack\x86_64-windows\msys2-20150512\mingw64\bin --extra-lib-dirs=C:\Users\Jacek\AppData\Local\Programs\stack\x86_64-windows\msys2-20150512\mingw64\lib
+    Process exited with code: ExitFailure 1
+    Logs have been written to: C:\HaskellPlatform\msys\home\Jacek\hsudoku\.stack-work\logs\gi-cairo-1.0.14.log
+
+    [1 of 2] Compiling Main             ( C:\HaskellPlatform\msys\tmp\stack15372\gi-cairo-1.0.14\Setup.hs, C:\HaskellPlatform\msys\tmp\stack15372\gi-cairo-1.0.14\.stack-work\dist\ca59d0ab\setup\Main.o )
+    [2 of 2] Compiling StackSetupShim   ( C:\sr\setup-exe-src\setup-shim-Z6RU0evB.hs, C:\HaskellPlatform\msys\tmp\stack15372\gi-cairo-1.0.14\.stack-work\dist\ca59d0ab\setup\StackSetupShim.o )
+    Linking C:\HaskellPlatform\msys\tmp\stack15372\gi-cairo-1.0.14\.stack-work\dist\ca59d0ab\setup\setup.exe ...
+    Could not resolve symbol "cairo_gobject_context_get_type" in namespace "cairo"
+    CallStack (from HasCallStack):
+    error, called at lib\Data\GI\CodeGen\LibGIRepository.hs:167:8 in
+    haskell-gi-0.20.3-ApJPztkUy0UEBeqlBJz1Ty:Data.GI.CodeGen.LibGIRepository
+
+    ** (setup.exe:20792): WARNING **: Failed to load shared library 'libcairo-gobject-2.dll' referenced by the typelib: 'libcairo-gobject-2.dll': The specified procedure could not be found.
+#+END_EXAMPLE
