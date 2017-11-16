@@ -1,0 +1,7 @@
+* Haskell Install
+
+File haskellInstall.org contains the record or my struggle with haskell
+installation and compilation.
+
+It is hoped that someone would review it and one day Haskell experience on
+Windows will not be so awful.
