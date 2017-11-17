@@ -160,3 +160,6 @@ https://github.com/chris-martin/haskell-gtk-hello-world
 
 Got the error about something gtk missing so i tried to install version 2 of
 gtk library: pacman -S mingw64/mingw-w64-x86_64-gtk2
+
+After that stack build has worked and I was able to launch the built examples
+from the command line.
