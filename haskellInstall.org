@@ -163,3 +163,15 @@ gtk library: pacman -S mingw64/mingw-w64-x86_64-gtk2
 
 After that stack build has worked and I was able to launch the built examples
 from the command line.
+
+** Still to do
+I need to figure out where shold I put my stack global configuration for
+
+#+BEGIN_EXAMPLE
+# Extra directories used by stack for building
+extra-include-dirs:
+- C:\HaskellPlatform\msys\mingw64\include
+extra-lib-dirs:
+- C:\HaskellPlatform\msys\mingw64\bin
+- C:\HaskellPlatform\msys\mingw64\lib
+#+END_EXAMPLE
