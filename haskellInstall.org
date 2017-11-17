@@ -151,3 +151,12 @@ Added following to extra-lib-dirs in stack.yaml
 #+BEGIN_EXAMPLE
 - C:\HaskellPlatform\msys\mingw64\lib
 #+END_EXAMPLE
+
+Gave up on hsudoku because I did not know how to understand this page:
+https://github.com/NixOS/nixpkgs/issues/16998
+
+And tried to build the following:
+https://github.com/chris-martin/haskell-gtk-hello-world
+
+Got the error about something gtk missing so i tried to install version 2 of
+gtk library: pacman -S mingw64/mingw-w64-x86_64-gtk2
