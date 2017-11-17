@@ -119,3 +119,35 @@ gi-gobject-2.0.15: copy/register
 
     ** (setup.exe:20792): WARNING **: Failed to load shared library 'libcairo-gobject-2.dll' referenced by the typelib: 'libcairo-gobject-2.dll': The specified procedure could not be found.
 #+END_EXAMPLE
+
+After another break I have modified PATH in ~/.bash_profile to look as follows:
+#+BEGIN_EXAMPLE
+export PATH="/c/HaskellPlatform/bin:/c/HaskellPlatform/lib/extralibs/bin:/c/Users/Jacek/AppData/Roaming/local/bin:/c/Users/Jacek/AppData/Roaming/cabal/bin:${PATH}"
+#+END_EXAMPLE
+
+Installed pango: pacman -S mingw64/mingw-w64-x86_64-pango
+and tried again.
+
+Installed another package with pacman -S mingw64/mingw-w64-x86_64-atk
+Installed another package with pacman -S mingw64/mingw-w64-x86_64-gdk-pixbuf2
+
+Added following in the hsudoku/stack.yaml
+#+BEGIN_EXAMPLE
+extra-include-dirs:
+- C:\HaskellPlatform\msys\mingw64\include
+#+END_EXAMPLE
+
+Tried to ad following environment variables to ~/.bash_profile
+#+BEGIN_EXAMPLE
+export XDG_DATA_DIRS="/c/HaskellPlatform/msys/mingw64/share"
+export PKG_CONFIG_PATH="/c/HaskellPlatform/msys/mingw64/lib/pkgconfig"
+export HASKELL_GI_GIR_SEARCH_PATH="/c/HaskellPlatform/msys/mingw64/share/gir-1.0"
+#+END_EXAMPLE
+
+These seem to work but I get the warnings saying Failed to load shared library.
+Changing the order of PATH elements did not work.
+
+Added following to extra-lib-dirs in stack.yaml
+#+BEGIN_EXAMPLE
+- C:\HaskellPlatform\msys\mingw64\lib
+#+END_EXAMPLE
