@@ -1,0 +1,9 @@
+* Third attempt
+
+I have installed Haskell Platform again. This time I went to powershell and
+executed ~cabal user-config init~ as instructed on Haskell platform website.
+Also I added the suggested extra-dirs as the website tells you to do after the
+installation.
+
+Next I installed Msys2 from http://www.msys2.org/ and updated it. Later I will
+use it for Gtk libraries.
