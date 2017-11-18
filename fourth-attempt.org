@@ -11,7 +11,7 @@ As an administrator in powershell I ran ~stack setup~.
 Then, as normal user in powershell I made sure I am in hsudoku folder and
 ran ~stack setup~.
 
-After that I ran stack build which gave me a pkg-config error.
+After that I ran ~stack build~ which gave me a pkg-config error.
 
 Then I ran ~stack exec -- pacman -Sy~ which has synchronized msys package
 database. That page gave me a clue https://github.com/commercialhaskell/stack/issues/1586
@@ -26,7 +26,7 @@ Then I ran ~stack build~ which gave me a gobject-error.
 I have installed clutter library hoping it will also install gobject.
 ~stack exec -- pacman -S mingw64/mingw-w64-x86_64-clutter~
 
-Afterwards, I have ran stack build and got to gobject-introspection error.
+Afterwards, I have ran ~stack build~ and got to gobject-introspection error.
 
 So I ran ~stack exec -- pacman -S mingw64/mingw-w64-x86_64-gobject-introspection~
 
