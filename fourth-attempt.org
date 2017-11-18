@@ -8,16 +8,7 @@ installation.
 Next I installed MSYS2 from http://www.msys2.org/ and updated it. Later I will
 use it for Gtk libraries.
 
-Then I modified the stack.yaml to include Gtk libraries installed by MSYS2.
-#+BEGIN_EXAMPLE
-extra-include-dirs:
-- C:\msys64\mingw64\include
-extra-lib-dirs:
-- C:\msys64\mingw64\lib
-- C:\msys64\mingw64\bin
-#+END_EXAMPLE
-
-As an administrator in powershell I ran stack setup.
+As an administrator in powershell I ran ~stack setup~.
 
 ** Normal use in Powershell
 Then, as normal user in powershell I made sure I am in hsudoku folder and
@@ -25,38 +16,40 @@ ran ~stack setup~.
 
 After that I ran stack build which gave me a pkg-config error.
 
-Then I ran stack exec -- pacman -Sy which has synchronized msys package
-database. https://github.com/commercialhaskell/stack/issues/1586
+Then I ran ~stack exec -- pacman -Sy~ which has synchronized msys package
+database. That page gave me a clue https://github.com/commercialhaskell/stack/issues/1586
 
-Then I searched for pkg-config and ran stack exec -- pacman -Ss pkg-config
+Then I searched for pkg-config and and to do it ran ~stack exec -- pacman -Ss pkg-config~
 
 And installed it by running:
-stack exec -- pacman -S mingw64/mingw-w64-x86_64-pkg-config
+~stack exec -- pacman -S mingw64/mingw-w64-x86_64-pkg-config~
 
-Then I ran stack build which gave me a gobject-error.
+Then I ran ~stack build~ which gave me a gobject-error.
 
 I have installed clutter library hoping it will also install gobject.
-stack exec -- pacman -S mingw64/mingw-w64-x86_64-clutter
+~stack exec -- pacman -S mingw64/mingw-w64-x86_64-clutter~
 
 Afterwards, I have ran stack build and got to gobject-introspection error.
 
-So I ran stack exec -- pacman -S mingw64/mingw-w64-x86_64-gobject-introspection
+So I ran ~stack exec -- pacman -S mingw64/mingw-w64-x86_64-gobject-introspection~
 
-Compiling continued for a while until I got to git errors.
+Compiling continued for a while until I got to gir errors.
 
-So I set up an environment variable for the duration of the shell session.
+So I set up an environment variable for the duration of the powershell session.
+#+BEGIN_EXAMPLE
 $env:HASKELL_GI_GIR_SEARCH_PATH = "C:\Users\Jacek\AppData\Local\Programs\stack\x86_64-windows\msys2-20150512\mingw64\share\gir-1.0"
+#+END_EXAMPLE
 
 That worked for a while but then I got an error, so I decided to set other
-environment variables from the first attempt.
+environment variables.
 #+BEGIN_EXAMPLE
 $env:XDG_DATA_DIRS="C:\Users\Jacek\AppData\Local\Programs\stack\x86_64-windows\msys2-20150512\mingw64\share"
 $env:PKG_CONFIG_PATH="C:\Users\Jacek\AppData\Local\Programs\stack\x86_64-windows\msys2-20150512\mingw64\lib\pkgconfig"
 #+END_EXAMPLE
 
-Then I tried stack build again
+Then I tried ~stack build~ again
 
-Then I got to this error
-https://github.com/NixOS/nixpkgs/issues/16998
+I made significant progress then I got to this error
+https://github.com/NixOS/nixpkgs/issues/16998 .
 
-At which point it was the time to give up,
+At which point it was the time to give up.
