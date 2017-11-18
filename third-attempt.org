@@ -5,5 +5,32 @@ executed ~cabal user-config init~ as instructed on Haskell platform website.
 Also I added the suggested extra-dirs as the website tells you to do after the
 installation.
 
-Next I installed Msys2 from http://www.msys2.org/ and updated it. Later I will
+Next I installed MSYS2 from http://www.msys2.org/ and updated it. Later I will
 use it for Gtk libraries.
+
+Then I modified the stack.yaml to include Gtk libraries installed by MSYS2.
+#+BEGIN_EXAMPLE
+extra-include-dirs:
+- C:\msys64\mingw64\include
+extra-lib-dirs:
+- C:\msys64\mingw64\lib
+- C:\msys64\mingw64\bin
+#+END_EXAMPLE
+
+Then in powershell I made sure I am in hsudoku folder and ran ~stack setup~.
+
+Then I ran stack build and got an error related to C:\sr permissions. I
+restarted powershell as an administrator and tired to run stack setup in
+C:\WINDOWS folder.
+
+Then I started normal user powershell and went to hsudoku folder and ran stack
+setup again. This time it failed on missing pkg-config. So I went to MSYS2
+terminal and installed it.
+
+Then I switched to powershell terminal and ran stack build. And it failed on
+pkg-config again.
+
+This issue gave me a clue https://github.com/commercialhaskell/stack/issues/1586
+and I tried to update stack pacman.
+Running stack exec -- pacman -Syu resuted in corrupted pacakage database of
+stack's msys.

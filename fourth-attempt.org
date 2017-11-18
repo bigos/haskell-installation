@@ -46,19 +46,17 @@ Compiling continued for a while until I got to git errors.
 
 So I set up an environment variable for the duration of the shell session.
 $env:HASKELL_GI_GIR_SEARCH_PATH = "C:\Users\Jacek\AppData\Local\Programs\stack\x86_64-windows\msys2-20150512\mingw64\share\gir-1.0"
-#
-Then I ran stack build and got an error related to C:\sr permissions. I
-restarted powershell as an administrator and tired to run stack setup in
-C:\WINDOWS folder.
 
-Then I started normal user powershell and went to hsudoku folder and ran stack
-setup again. This time it failed on missing pkg-config. So I went to MSYS2
-terminal and installed it.
+That worked for a while but then I got an error, so I decided to set other
+environment variables from the first attempt.
+#+BEGIN_EXAMPLE
+$env:XDG_DATA_DIRS="C:\Users\Jacek\AppData\Local\Programs\stack\x86_64-windows\msys2-20150512\mingw64\share"
+$env:PKG_CONFIG_PATH="C:\Users\Jacek\AppData\Local\Programs\stack\x86_64-windows\msys2-20150512\mingw64\lib\pkgconfig"
+#+END_EXAMPLE
 
-Then I switched to powershell terminal and ran stack build. And it failed on
-pkg-config again.
+Then I tried stack build again
 
-This issue gave me a clue https://github.com/commercialhaskell/stack/issues/1586
-and I tried to update stack pacman.
-Running stack exec -- pacman -Syu resuted in corrupted pacakage database of
-stack's msys.
+Then I got to this error
+https://github.com/NixOS/nixpkgs/issues/16998
+
+At which point it was the time to give up,
