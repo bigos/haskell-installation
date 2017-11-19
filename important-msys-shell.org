@@ -1,0 +1,6 @@
+* interesting discovery
+You can start mingw64 shell from powershell and have full windows PATH if you use
+the following options
+#+BEGIN_EXAMPLE
+C:\msys64\msys2_shell.cmd -mingw64 -full-path
+#+END_EXAMPLE
